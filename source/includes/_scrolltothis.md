@@ -25,6 +25,16 @@ jQuery.fn.extend({
 $('#some_element').scrollToThis();
 ```
 
+```css
+/*
+    No CSS needed
+*/
+```
+
+```html
+    <!-- No HTML needed -->
+```
+
 ScrollToThis is a custom jQuery method that triggers the page to scroll to the element it is called on with an optional offset.
 
 <aside class="warning">Make sure that the selector you're using to call ScollToThis is not returning more than one element!</aside>
