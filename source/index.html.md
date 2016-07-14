@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: JS Documentation
 
 language_tabs:
   - javascript
