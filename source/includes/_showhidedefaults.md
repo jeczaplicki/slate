@@ -20,16 +20,15 @@ var showHideDefaults = {
 
                     $(label).click(function() {
                         input.focus();
-                        //alert('a');
                     })
                     $(this).on('keydown', function() {
 
-                        if ( $(this).val() == '') {
+                        if ($(this).val() == '') {
                             $(label).hide();
                         }
                     });
                     $(this).on('keyup', function() {
-                        if ( $(this).val() == '') {
+                        if ($(this).val() == '') {
                             $(label).show();
                         } else {
                             $(label).hide();
@@ -37,7 +36,7 @@ var showHideDefaults = {
                     });
 
                     $(this).on('blur', function() {
-                        if ( $(this).val() == '') {
+                        if ($(this).val() == '') {
                             $(label).show();
                         }
                     });

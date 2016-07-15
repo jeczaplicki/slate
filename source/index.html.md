@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - scrolltothis
   - showhidedefaults
+  - hashcontroller
 
 search: true
 ---
