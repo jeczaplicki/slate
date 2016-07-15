@@ -9,9 +9,10 @@ language_tabs:
 toc_footers:
 
 includes:
+  - cookiecontroller
+  - hashcontroller
   - scrolltothis
   - showhidedefaults
-  - hashcontroller
 
 search: true
 ---
