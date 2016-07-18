@@ -119,7 +119,317 @@
 
 <p>Welcome to the Jell JS Documentation!</p>
 
-          <h1 id="scrolltothis">ScrollToThis</h1>
+          <h1 id="allowonlynumbers">allowOnlyNumbers</h1>
+<pre class="highlight javascript"><code><span class="cm">/*
+  jQuery custom allowOnlyNumbers method:
+*/</span>
+
+<span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="na">allowOnlyNumbers</span> <span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">decimal</span><span class="p">,</span> <span class="nx">dash</span><span class="p">){</span>
+        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">off</span><span class="p">(</span><span class="s1">'keydown.allowOnlyNumbers'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'keydown.allowOnlyNumbers'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+            <span class="cm">/* Allow: backspace, delete, tab, escape, and enter */</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">46</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">8</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">9</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">27</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">13</span> <span class="o">||</span>
+                <span class="cm">/* Allow decimal */</span>
+                <span class="p">(</span> <span class="nx">decimal</span><span class="o">==</span> <span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">190</span> <span class="o">||</span> <span class="nx">decimal</span><span class="o">==</span> <span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">110</span><span class="p">)</span>  <span class="o">||</span>
+                <span class="cm">/* Allow dashes */</span>
+                <span class="p">(</span> <span class="nx">dash</span> <span class="o">&amp;&amp;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">109</span> <span class="o">||</span> <span class="nx">dash</span> <span class="o">&amp;&amp;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">189</span><span class="p">)</span>  <span class="o">||</span>
+                <span class="cm">/* Allow: Ctrl+A */</span>
+                <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">65</span> <span class="o">&amp;&amp;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">ctrlKey</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="o">||</span>
+                <span class="cm">/* Allow: home, end, left, right */</span>
+                <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&gt;=</span> <span class="mi">35</span> <span class="o">&amp;&amp;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&lt;=</span> <span class="mi">39</span><span class="p">))</span> <span class="p">{</span>
+                <span class="cm">/* let it happen, don't do anything */</span>
+                    <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="cm">/* Ensure that it is a number and stop the keypress */</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">shiftKey</span> <span class="o">||</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&lt;</span> <span class="mi">48</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&gt;</span> <span class="mi">57</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&lt;</span> <span class="mi">96</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">&gt;</span> <span class="mi">105</span> <span class="p">))</span> <span class="p">{</span>
+                    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="cm">/*
+  Example usages:
+*/</span>
+
+<span class="c1">//disallow decimals and dashes</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#some_element'</span><span class="p">).</span><span class="nx">allowOnlyNumbers</span><span class="p">();</span>
+
+<span class="c1">//allow decimals</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#some_element'</span><span class="p">).</span><span class="nx">allowOnlyNumbers</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+<span class="c1">//allow dashes</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#some_element'</span><span class="p">).</span><span class="nx">allowOnlyNumbers</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="c1">//allow decimals and dashes</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#some_element'</span><span class="p">).</span><span class="nx">allowOnlyNumbers</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+</code></pre>
+<pre class="highlight css"><code><span class="c">/*
+    No CSS needed
+*/</span>
+</code></pre>
+<pre class="highlight html"><code>    <span class="c">&lt;!-- No HTML needed --&gt;</span>
+</code></pre>
+
+<p>allowOnlyNumbers is a custom jQuery method that restricts a field to numbers with the option of allowing decimals and/or dashes.</p>
+
+          <h1 id="backgroundcover">backgroundCover</h1>
+<pre class="highlight javascript"><code><span class="cm">/*
+  backgroundCover object:
+*/</span>
+
+<span class="kd">var</span> <span class="nx">backgroundCover</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">init</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="c1">//set styles on elements if they haven't been set with CSS</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'.mimic-cover'</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="s1">'position'</span><span class="p">:</span> <span class="s1">'relative'</span><span class="p">,</span> <span class="s1">'overflow'</span><span class="p">:</span> <span class="s1">'hidden'</span><span class="p">})</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'.mimic-cover img.cover'</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="s1">'position'</span><span class="p">:</span> <span class="s1">'absolute'</span><span class="p">})</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'div.mimic-cover'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+            <span class="kd">var</span> <span class="nx">par</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'img.cover'</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">loadimg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+                <span class="nx">loadimg</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">img</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'src'</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">loadimg</span><span class="p">.</span><span class="nx">complete</span> <span class="o">||</span> <span class="nx">loadimg</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// image is cached</span>
+                <span class="nx">backgroundCover</span><span class="p">.</span><span class="nx">getDims</span><span class="p">(</span><span class="nx">par</span><span class="p">,</span> <span class="nx">img</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">$</span><span class="p">(</span><span class="nx">loadimg</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'load'</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+                    <span class="nx">backgroundCover</span><span class="p">.</span><span class="nx">getDims</span><span class="p">(</span><span class="nx">par</span><span class="p">,</span> <span class="nx">img</span><span class="p">);</span>
+                <span class="p">});</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+    <span class="na">getDims</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">par</span><span class="p">,</span> <span class="nx">img</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">loadimg</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+        <span class="nx">loadimg</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">img</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'src'</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">img_w</span> <span class="o">=</span> <span class="nx">loadimg</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">img_h</span> <span class="o">=</span> <span class="nx">loadimg</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">img_ratio</span> <span class="o">=</span> <span class="nx">img_w</span> <span class="o">/</span> <span class="nx">img_h</span><span class="p">;</span>
+        <span class="nx">backgroundCover</span><span class="p">.</span><span class="nx">size</span><span class="p">(</span><span class="nx">par</span><span class="p">,</span> <span class="nx">img</span><span class="p">,</span> <span class="nx">img_ratio</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">resize</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+            <span class="nx">backgroundCover</span><span class="p">.</span><span class="nx">size</span><span class="p">(</span><span class="nx">par</span><span class="p">,</span> <span class="nx">img</span><span class="p">,</span> <span class="nx">img_ratio</span><span class="p">);</span>
+            <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+                <span class="nx">backgroundCover</span><span class="p">.</span><span class="nx">size</span><span class="p">(</span><span class="nx">par</span><span class="p">,</span> <span class="nx">img</span><span class="p">,</span> <span class="nx">img_ratio</span><span class="p">);</span>
+            <span class="p">},</span> <span class="mi">200</span><span class="p">)</span> <span class="c1">// try to catch slick</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+    <span class="na">size</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">par</span><span class="p">,</span> <span class="nx">img</span><span class="p">,</span> <span class="nx">image_ratio</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">par_w</span> <span class="o">=</span> <span class="nx">par</span><span class="p">.</span><span class="nx">width</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">par_h</span> <span class="o">=</span> <span class="nx">par</span><span class="p">.</span><span class="nx">height</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">par_ratio</span> <span class="o">=</span> <span class="nx">par_w</span> <span class="o">/</span> <span class="nx">par_h</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">image_ratio</span> <span class="o">&gt;</span> <span class="nx">par_ratio</span><span class="p">){</span>
+            <span class="nx">img</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'y'</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'x'</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">'margin-left'</span><span class="p">,</span>  <span class="o">-</span><span class="nx">img</span><span class="p">.</span><span class="nx">width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">img</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'x'</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'y'</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">'margin-top'</span><span class="p">,</span> <span class="o">-</span><span class="nx">img</span><span class="p">.</span><span class="nx">height</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/*
+  Example usages:
+*/</span>
+
+<span class="c1">//initialize backgroundCover</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">backgroundCover</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+<span class="p">});</span>
+
+</code></pre>
+<pre class="highlight css"><code><span class="nc">.mimic-cover</span><span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+    <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.mimic-cover</span> <span class="nt">img</span><span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="nl">z-index</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.mimic-cover</span> <span class="nt">img</span><span class="nc">.x</span><span class="p">{</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">0px</span><span class="p">;</span>
+    <span class="nl">margin-left</span><span class="p">:</span> <span class="m">0px</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.mimic-cover</span> <span class="nt">img</span><span class="nc">.y</span><span class="p">{</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">margin-top</span><span class="p">:</span> <span class="m">0px</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight html"><code>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mimic-cover"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"cover"</span> <span class="na">href=</span><span class="s">"some_image.jpg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+</code></pre>
+
+<p>backgroundCover emulates background size cover on any image element with the class cover whose parent has the class mimic-cover.</p>
+
+          <h1 id="cookiecontroller">cookieController</h1>
+<pre class="highlight javascript"><code><span class="cm">/*
+  cookieController object:
+*/</span>
+
+<span class="kd">var</span> <span class="nx">cookieController</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">setCookie</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">days</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">days</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+            <span class="nx">date</span><span class="p">.</span><span class="nx">setTime</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">+</span> <span class="p">(</span><span class="nx">days</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">));</span>
+            <span class="kd">var</span> <span class="nx">expires</span> <span class="o">=</span> <span class="s2">"; expires="</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">toGMTString</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span>
+            <span class="kd">var</span> <span class="nx">expires</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">+</span> <span class="nx">value</span> <span class="o">+</span> <span class="nx">expires</span> <span class="o">+</span> <span class="s2">"; path=/"</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="na">getCookie</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">nameEQ</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">"="</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">ca</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">';'</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">ca</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">ca</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            <span class="k">while</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="s1">' '</span><span class="p">)</span>
+                <span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">nameEQ</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">nameEQ</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="na">deleteCookie</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">cookieController</span><span class="p">.</span><span class="nx">setCookie</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/*
+  Example usages:
+*/</span>
+
+<span class="c1">//set cookie</span>
+<span class="nx">cookieController</span><span class="p">.</span><span class="nx">setCookie</span><span class="p">(</span><span class="s1">'cookiename'</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+
+<span class="c1">//get cookie by name</span>
+<span class="kd">var</span> <span class="nx">current_cookie</span> <span class="o">=</span> <span class="nx">cookieController</span><span class="p">.</span><span class="nx">getCookie</span><span class="p">(</span><span class="s1">'cookiename'</span><span class="p">);</span>
+
+<span class="c1">//delete cookie</span>
+<span class="nx">cookieController</span><span class="p">.</span><span class="nx">deleteCookie</span><span class="p">(</span><span class="s1">'cookiename'</span><span class="p">);</span>
+
+</code></pre>
+<pre class="highlight css"><code><span class="c">/*
+    No CSS needed
+*/</span>
+</code></pre>
+<pre class="highlight html"><code>    <span class="c">&lt;!-- No HTML needed --&gt;</span>
+</code></pre>
+
+<p>cookieController is a set of functions used to read and modify cookies.</p>
+
+          <h1 id="hashcontroller">hashController</h1>
+<pre class="highlight javascript"><code><span class="cm">/*
+  hashController object:
+*/</span>
+
+<span class="kd">var</span> <span class="nx">hashController</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">setHash</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">the_hash</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">the_hash</span> <span class="o">=</span> <span class="nx">the_hash</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">'#'</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span> <span class="o">=</span> <span class="nx">the_hash</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="na">setHashFromElementAttribute</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">attribute</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">the_hash</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">attribute</span><span class="p">);</span>
+        <span class="nx">the_hash</span> <span class="o">=</span> <span class="nx">the_hash</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">'#'</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">attribute</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="na">getHash</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">"#"</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">||</span> <span class="s2">""</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">hash</span> <span class="o">!=</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">hash</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="na">clearHash</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="s2">"pushState"</span> <span class="k">in</span> <span class="nx">history</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// html5 compatilbe : remove the # too</span>
+            <span class="nx">history</span><span class="p">.</span><span class="nx">pushState</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// not html5 : leaves #</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/*
+  Example usages:
+*/</span>
+
+<span class="c1">//set hash</span>
+<span class="nx">hashController</span><span class="p">.</span><span class="nx">setHash</span><span class="p">(</span><span class="s1">'somehash'</span><span class="p">);</span>
+
+<span class="c1">//get hash</span>
+<span class="kd">var</span> <span class="nx">current_hash</span> <span class="o">=</span> <span class="nx">hashController</span><span class="p">.</span><span class="nx">getHash</span><span class="p">();</span>
+
+<span class="c1">//clear hash</span>
+<span class="nx">hashController</span><span class="p">.</span><span class="nx">clearHash</span><span class="p">();</span>
+
+<span class="c1">//set hash to an elements attribute</span>
+<span class="nx">hashController</span><span class="p">.</span><span class="nx">setHashFromElementAttribute</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'#some_element'</span><span class="p">),</span> <span class="s1">'data-slug'</span><span class="p">);</span>
+
+</code></pre>
+<pre class="highlight css"><code><span class="c">/*
+    No CSS needed
+*/</span>
+</code></pre>
+<pre class="highlight html"><code>    <span class="c">&lt;!-- No HTML needed --&gt;</span>
+</code></pre>
+
+<p>hashController is a set of functions used to read and modify the hash.</p>
+
+          <h1 id="onimageload">onImageLoad</h1>
+<pre class="highlight javascript"><code><span class="cm">/*
+  jQuery custom onImageLoad method:
+*/</span>
+
+<span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="na">onImageLoad</span> <span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">func</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">img_src</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'src'</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">img_src</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">img_src</span> <span class="o">!==</span> <span class="s1">'undefined'</span> <span class="o">&amp;&amp;</span> <span class="nx">img_src</span> <span class="o">!==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+            <span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">img_src</span><span class="p">;</span>
+
+            <span class="k">if</span><span class="p">(</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">img</span><span class="p">.</span><span class="nx">complete</span> <span class="o">||</span> <span class="nx">img</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// image is cached</span>
+                    <span class="nx">func</span><span class="p">();</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="nx">img</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'load'</span><span class="p">,</span> <span class="nx">func</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="cm">/*
+  Example usages:
+*/</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#some_element'</span><span class="p">).</span><span class="nx">onImageLoad</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'image loaded'</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre>
+<pre class="highlight css"><code><span class="c">/*
+    No CSS needed
+*/</span>
+</code></pre>
+<pre class="highlight html"><code>    <span class="c">&lt;!-- No HTML needed --&gt;</span>
+</code></pre>
+
+<p>onImageLoad is a custom jQuery method that calls a function when an image has loaded.</p>
+
+          <h1 id="scrolltothis">scrollToThis</h1>
 <pre class="highlight javascript"><code><span class="cm">/*
   jQuery custom scrollToThis method:
 */</span>
@@ -150,11 +460,11 @@
 <pre class="highlight html"><code>    <span class="c">&lt;!-- No HTML needed --&gt;</span>
 </code></pre>
 
-<p>ScrollToThis is a custom jQuery method that triggers the page to scroll to the element it is called on with an optional offset.</p>
+<p>scrollToThis is a custom jQuery method that triggers the page to scroll to the element it is called on with an optional offset.</p>
 
 <aside class="warning">Make sure that the selector you&rsquo;re using to call ScollToThis is not returning more than one element!</aside>
 
-          <h1 id="showhidedefaults">ShowHideDefaults</h1>
+          <h1 id="showhidedefaults">showHideDefaults</h1>
 <pre class="highlight javascript"><code><span class="cm">/*
     showHideDefaults object:
 */</span>
@@ -162,45 +472,39 @@
 <span class="kd">var</span> <span class="nx">showHideDefaults</span> <span class="o">=</span> <span class="p">{</span>
     <span class="na">init</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">$</span><span class="p">(</span><span class="s1">'.input_default_wrap input, .input_default_wrap textarea'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-
             <span class="k">if</span> <span class="p">(</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'type'</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">'hidden'</span> <span class="p">)</span> <span class="p">{</span>
                 <span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s1">'label'</span><span class="p">)</span>
                 <span class="nx">showHideDefaults</span><span class="p">.</span><span class="nx">check</span><span class="p">();</span>
-                <span class="nx">setTimeout</span><span class="p">(</span><span class="s1">'showHideDefaults.check()'</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span> <span class="c1">// check again in case of autofill</span>
-
+                <span class="c1">// check again in case of autofill</span>
+                <span class="nx">setTimeout</span><span class="p">(</span><span class="s1">'showHideDefaults.check()'</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
                 <span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">'showhide'</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
                     <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'showhide'</span><span class="p">);</span>
                     <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-
                     <span class="nx">$</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
                         <span class="nx">input</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
-                        <span class="c1">//alert('a');</span>
                     <span class="p">})</span>
                     <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'keydown'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
-                        <span class="k">if</span> <span class="p">(</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
                             <span class="nx">$</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
                         <span class="p">}</span>
                     <span class="p">});</span>
                     <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'keyup'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-                        <span class="k">if</span> <span class="p">(</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
                             <span class="nx">$</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
                         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
                             <span class="nx">$</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
                         <span class="p">}</span>
                     <span class="p">});</span>
-
                     <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'blur'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-                        <span class="k">if</span> <span class="p">(</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
                             <span class="nx">$</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
                         <span class="p">}</span>
                     <span class="p">});</span>
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">});</span>
-
         <span class="nx">showHideDefaults</span><span class="p">.</span><span class="nx">styleRequired</span><span class="p">();</span>
-
     <span class="p">},</span>
     <span class="na">check</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">$</span><span class="p">(</span><span class="s1">'.input_default_wrap input, .input_default_wrap textarea'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -211,11 +515,8 @@
                 <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">});</span>
-
     <span class="p">},</span>
-
     <span class="na">styleRequired</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-
         <span class="nx">$</span><span class="p">(</span><span class="s1">'.input_default_wrap label'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
             <span class="kd">var</span> <span class="nx">label_html</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
             <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span> <span class="nx">label_html</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">"*"</span><span class="p">,</span> <span class="s2">"&lt;span class='required'&gt;*&lt;/span&gt;"</span><span class="p">)</span> <span class="p">);</span>
@@ -287,6 +588,294 @@
 </code></pre>
 
 <p>showHideDefaults uses field labels as field placeholders and hides the placeholder when a user enters data into the field.</p>
+
+          <h1 id="validateform">validateForm</h1>
+<pre class="highlight javascript"><code><span class="cm">/*
+  jQuery custom validateForm method:
+*/</span>
+
+<span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="na">validateForm</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">warningLabels</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">is_form</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">is</span><span class="p">(</span><span class="s2">"form"</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">is_form</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'span.warning, span.email-warning, span.phone-warning'</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.highlight'</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'highlight'</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">errors</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.is-required'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'type'</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">type</span> <span class="o">===</span> <span class="s1">'undefined'</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">//if no type, this is a textarea</span>
+                <span class="nx">type</span> <span class="o">=</span> <span class="s2">"textarea"</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">"text"</span> <span class="o">||</span>  <span class="nx">type</span> <span class="o">==</span> <span class="s2">"textarea"</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">==</span> <span class="s2">"password"</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">errors</span><span class="o">++</span><span class="p">;</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'highlight'</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">warningLabels</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">after</span><span class="p">(</span><span class="s1">'&lt;span class="warning"&gt;This field is required.&lt;/span&gt; '</span><span class="p">)</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">"email"</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">atpos</span> <span class="o">=</span> <span class="nx">val</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">"@"</span><span class="p">);</span>
+                <span class="kd">var</span> <span class="nx">dotpos</span> <span class="o">=</span> <span class="nx">val</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s2">"."</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">errors</span><span class="o">++</span><span class="p">;</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'highlight'</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">warningLabels</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">after</span><span class="p">(</span><span class="s1">'&lt;span class="warning"&gt;This field is required.&lt;/span&gt; '</span><span class="p">)</span>
+                    <span class="p">}</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">atpos</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="nx">dotpos</span> <span class="o">&lt;=</span> <span class="nx">atpos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">||</span> <span class="nx">dotpos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">&gt;=</span> <span class="nx">val</span><span class="p">.</span><span class="nx">length</span> <span class="o">||</span> <span class="nx">val</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// not valid</span>
+                    <span class="nx">errors</span><span class="o">++</span><span class="p">;</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'email-highlight'</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">warningLabels</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">after</span><span class="p">(</span><span class="s1">'&lt;span class="email-warning"&gt;Enter a valid email address.&lt;/span&gt; '</span><span class="p">)</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">"tel"</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">cleaned_val</span> <span class="o">=</span> <span class="nx">val</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span> <span class="sr">/^</span><span class="se">\D</span><span class="sr">+/g</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">errors</span><span class="o">++</span><span class="p">;</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'highlight'</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">warningLabels</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">after</span><span class="p">(</span><span class="s1">'&lt;span class="warning"&gt;This field is required.&lt;/span&gt; '</span><span class="p">)</span>
+                    <span class="p">}</span>
+                    <span class="c1">// make sure there are at least 10 numbers</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="nx">val</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// not valid</span>
+                    <span class="nx">errors</span><span class="o">++</span><span class="p">;</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'phone-highlight'</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">warningLabels</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">after</span><span class="p">(</span><span class="s1">'&lt;span class="phone-warning"&gt;Enter a valid phone number.&lt;/span&gt; '</span><span class="p">)</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">errors</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">errors</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="s1">'There is an error in this form. Please fix it and resubmit.'</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="s1">'There are some errors in this form. Please fix them and resubmit.'</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">'.highlight'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">keyup</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">confirm_field</span><span class="p">();</span>
+                <span class="p">});</span>
+            <span class="p">})</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">'.email-highlight'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">keyup</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">confirm_email</span><span class="p">();</span>
+                <span class="p">});</span>
+            <span class="p">});</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">'.phone-highlight'</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">keyup</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">confirm_phone</span><span class="p">();</span>
+                <span class="p">});</span>
+            <span class="p">});</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// SUBMIT THE FORM</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">cb</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">cb</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">is_form</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">submit</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="cm">/*
+        -- CONFIRM FIELDS --
+        clears out errors after a form validation
+    */</span>
+    <span class="na">confirm_field</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">!=</span> <span class="s1">''</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'highlight'</span><span class="p">);</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.warning'</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="cm">/*
+        -- CONFIRM EMAIL + PHONE --
+        Small helper before and following validation.
+    */</span>
+    <span class="na">confirm_email</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+        <span class="kd">var</span> <span class="nx">atpos</span> <span class="o">=</span> <span class="nx">val</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">"@"</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">dotpos</span> <span class="o">=</span> <span class="nx">val</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s2">"."</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">atpos</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">dotpos</span> <span class="o">&gt;=</span> <span class="nx">atpos</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="nx">val</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="nx">dotpos</span> <span class="o">&amp;&amp;</span> <span class="nx">val</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// valid</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'valid'</span><span class="p">);</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'email-highlight'</span><span class="p">);</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.email-warning'</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'valid'</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="na">confirm_phone</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+        <span class="kd">var</span> <span class="nx">cleaned_val</span> <span class="o">=</span> <span class="nx">val</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span> <span class="sr">/^</span><span class="se">\D</span><span class="sr">+/g</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">val</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">//  valid</span>
+                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">'phone-highlight'</span><span class="p">);</span>
+                <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parent</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.phone-warning'</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+          <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="cm">/*
+  Example usages:
+*/</span>
+
+<span class="c1">//simply validate (no warning labels or callback)</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#some_element'</span><span class="p">).</span><span class="nx">validateForm</span><span class="p">();</span>
+
+<span class="c1">//validate and show warning labels</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#some_element'</span><span class="p">).</span><span class="nx">validateForm</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="c1">//validate, show warning labels, and pass a callback to be used instead of submitting form</span>
+<span class="kd">var</span> <span class="nx">callback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){};</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#some_element'</span><span class="p">).</span><span class="nx">validateForm</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight css"><code><span class="nt">input</span><span class="nc">.highlight</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span><span class="m">#efdedd</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">span</span><span class="nc">.warning</span><span class="o">,</span>
+<span class="nt">span</span><span class="nc">.email-warning</span><span class="o">,</span>
+<span class="nt">span</span><span class="nc">.phone-warning</span> <span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span><span class="m">#92231e</span><span class="p">;</span>
+    <span class="nl">font-size</span><span class="p">:</span><span class="m">16px</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span><span class="n">inline-block</span><span class="p">;</span>
+    <span class="nl">margin-top</span><span class="p">:</span><span class="m">6px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight html"><code>    <span class="c">&lt;!-- example of various input elements that can be validated by validateForm --&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"some_element"</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- required text field, cannot be empty --&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"name"</span><span class="nt">&gt;</span>Name<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"name"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"name"</span> <span class="na">class=</span><span class="s">"is-required"</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- required email field, cannot be empty, must pass email validation code --&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"email"</span><span class="nt">&gt;</span>Email<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"email"</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">id=</span><span class="s">"email"</span> <span class="na">class=</span><span class="s">"is-required"</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- required telephone field, cannot be empty, must pass phone validation code --&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"telephone"</span><span class="nt">&gt;</span>Telephone<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"telephone"</span> <span class="na">type=</span><span class="s">"tel"</span> <span class="na">id=</span><span class="s">"telephone"</span> <span class="na">class=</span><span class="s">"is-required"</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- required textarea, cannot be empty --&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"comments"</span><span class="nt">&gt;</span>Question(s)<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;textarea</span> <span class="na">name=</span><span class="s">"comments"</span> <span class="na">id=</span><span class="s">"comments"</span> <span class="na">class=</span><span class="s">"is-required"</span><span class="nt">&gt;&lt;/textarea&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+</code></pre>
+
+<p>validateForm is a custom jQuery method that validates a form or a series of form elements. It has the option for showing warning/error labels. It also has the option to call a callback function instead of submitting the form.</p>
+
+<p>The JS also includes the following jQuery helper methods:</p>
+
+<ul>
+<li>confirm_field</li>
+<li>confirm_email</li>
+<li>confirm_phone</li>
+</ul>
+
+<p>The helper methods above are used for updating the error state of the form after initial validation.</p>
+
+          <h1 id="validatenumeric">validateNumeric</h1>
+<pre class="highlight javascript"><code><span class="cm">/*
+  validateNumeric function:
+*/</span>
+
+<span class="kd">function</span> <span class="nx">validateNumeric</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+    <span class="k">return</span> <span class="o">!</span><span class="nb">isNaN</span><span class="p">(</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="nb">isFinite</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*
+  Example usages:
+*/</span>
+
+<span class="kd">var</span> <span class="nx">some_value</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">is_valid</span> <span class="o">=</span> <span class="nx">validateNumeric</span><span class="p">(</span><span class="nx">some_value</span><span class="p">);</span>
+
+</code></pre>
+<pre class="highlight css"><code><span class="c">/*
+    No CSS needed
+*/</span>
+</code></pre>
+<pre class="highlight html"><code>    <span class="c">&lt;!-- No HTML needed --&gt;</span>
+</code></pre>
+
+<p>validateNumeric is a function that returns true or false for whether a value is a valid numeric value.</p>
+
+          <h1 id="windowdimensions">windowDimensions</h1>
+<pre class="highlight javascript"><code><span class="cm">/*
+  windowDimensions object:
+*/</span>
+
+<span class="kd">var</span> <span class="nx">windowDimensions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">win_width</span> <span class="p">:</span> <span class="s1">'undefined'</span><span class="p">,</span>
+    <span class="na">win_height</span> <span class="p">:</span> <span class="s1">'undefined'</span><span class="p">,</span>
+    <span class="na">doc_width</span> <span class="p">:</span> <span class="s1">'undefined'</span><span class="p">,</span>
+    <span class="na">doc_height</span> <span class="p">:</span> <span class="s1">'undefined'</span><span class="p">,</span>
+    <span class="na">init</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">updateDimensions</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">resize</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">updateDimensions</span><span class="p">();</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+    <span class="na">updateDimensions</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">win_width</span> <span class="o">=</span> <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">viewport</span><span class="p">().</span><span class="nx">width</span><span class="p">;</span>
+        <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">win_height</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">height</span><span class="p">();</span>
+        <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">doc_width</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">width</span><span class="p">();</span>
+        <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">doc_height</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">height</span><span class="p">();</span>
+    <span class="p">},</span>
+    <span class="na">viewport</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="nb">window</span><span class="p">,</span>
+            <span class="nx">a</span> <span class="o">=</span> <span class="s1">'inner'</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="s1">'innerWidth'</span> <span class="k">in</span> <span class="nb">window</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">a</span> <span class="o">=</span> <span class="s1">'client'</span><span class="p">;</span>
+            <span class="nx">e</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="na">width</span><span class="p">:</span> <span class="nx">e</span><span class="p">[</span><span class="nx">a</span> <span class="o">+</span> <span class="s1">'Width'</span><span class="p">],</span>
+            <span class="na">height</span><span class="p">:</span> <span class="nx">e</span><span class="p">[</span><span class="nx">a</span> <span class="o">+</span> <span class="s1">'Height'</span><span class="p">]</span>
+        <span class="p">};</span>
+    <span class="p">},</span>
+    <span class="na">getWindowWidth</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">win_width</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="na">getWindowHeight</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">win_height</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/*
+  Example usages:
+*/</span>
+
+<span class="c1">//initialize windowDimensions</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="c1">//get window width</span>
+<span class="kd">var</span> <span class="nx">current_window_width</span> <span class="o">=</span> <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">getWindowWidth</span><span class="p">();</span>
+
+<span class="c1">//get window height</span>
+<span class="kd">var</span> <span class="nx">current_window_height</span> <span class="o">=</span> <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">getWindowHeight</span><span class="p">();</span>
+
+</code></pre>
+<pre class="highlight css"><code><span class="c">/*
+    No CSS needed
+*/</span>
+</code></pre>
+<pre class="highlight html"><code>    <span class="c">&lt;!-- No HTML needed --&gt;</span>
+</code></pre>
+
+<p>windowDimensions is a set of functions used to track and retrieve window dimensions.</p>
 
       </div>
       <div class="dark-box">
