@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - cookiecontroller
   - hashcontroller
+  - onimageload
   - scrolltothis
   - showhidedefaults
   - windowdimensions
