@@ -16,6 +16,7 @@ includes:
   - onimageload
   - scrolltothis
   - showhidedefaults
+  - validatenumeric
   - windowdimensions
 
 search: true
