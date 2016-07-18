@@ -13,6 +13,7 @@ includes:
   - hashcontroller
   - scrolltothis
   - showhidedefaults
+  - windowdimensions
 
 search: true
 ---

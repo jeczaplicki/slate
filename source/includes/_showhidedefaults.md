@@ -8,16 +8,14 @@
 var showHideDefaults = {
     init: function() {
         $('.input_default_wrap input, .input_default_wrap textarea').each(function() {
-
             if ( $(this).attr('type') != 'hidden' ) {
                 var label = $(this).parent().find('label')
                 showHideDefaults.check();
-                setTimeout('showHideDefaults.check()', 500); // check again in case of autofill
-
+                // check again in case of autofill
+                setTimeout('showHideDefaults.check()', 500);
                 if ( ! $(this).hasClass('showhide') ) {
                     $(this).addClass('showhide');
                     var input = $(this);
-
                     $(label).click(function() {
                         input.focus();
                     })
@@ -34,7 +32,6 @@ var showHideDefaults = {
                             $(label).hide();
                         }
                     });
-
                     $(this).on('blur', function() {
                         if ($(this).val() == '') {
                             $(label).show();
@@ -43,9 +40,7 @@ var showHideDefaults = {
                 }
             }
         });
-
         showHideDefaults.styleRequired();
-
     },
     check : function() {
         $('.input_default_wrap input, .input_default_wrap textarea').each(function() {
@@ -56,11 +51,8 @@ var showHideDefaults = {
                 }
             }
         });
-
     },
-
     styleRequired : function() {
-
         $('.input_default_wrap label').each(function() {
             var label_html = $(this).html();
             $(this).html( label_html.replace("*", "<span class='required'>*</span>") );
