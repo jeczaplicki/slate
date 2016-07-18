@@ -9,6 +9,7 @@ language_tabs:
 toc_footers:
 
 includes:
+  - allowonlynumbers
   - cookiecontroller
   - hashcontroller
   - onimageload
