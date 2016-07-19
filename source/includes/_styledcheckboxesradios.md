@@ -9,14 +9,13 @@ var styledCheckboxesRadios = {
     focused_class: "focused",
     set: function() {
         $('input[type=checkbox]').each(function(index) {
-            styledCheckboxesRadios.style($(this), 'checkbox')
+            styledCheckboxesRadios.styleInputs($(this), 'checkbox');
         });
-
         $('input[type=radio]').each(function(index) {
-            styledCheckboxesRadios.style($(this), 'radio')
+            styledCheckboxesRadios.styleInputs($(this), 'radio');
         });
     },
-    style: function(el, type) {
+    styleInputs: function(el, type) {
         var checked_markup;
         var unchecked_markup;
         var el_type_styled_class;
