@@ -16,7 +16,7 @@ function svgReplacement() {
   Example usages:
 */
 
-//initialize backgroundCover
+//initialize svgReplacement
 $(document).ready(function(){
     svgReplacement();
 });
