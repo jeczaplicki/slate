@@ -61,7 +61,6 @@ var styledCheckboxesRadios = {
                     //Then we'll apply the selected style to the radio where the change fired.
                     var radioGroup = $(el).attr('name');
                     $('input[name="' + radioGroup + '"]').parent().find(el_type_styled_class).removeClass('checked');
-
                 }
                 if ($(el).is(':checked')) {
                     $(pretty_checkbox).addClass('checked')
