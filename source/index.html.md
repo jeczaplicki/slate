@@ -16,6 +16,7 @@ includes:
   - onimageload
   - scrolltothis
   - showhidedefaults
+  - svgreplacement
   - validateform
   - validatenumeric
   - windowdimensions
