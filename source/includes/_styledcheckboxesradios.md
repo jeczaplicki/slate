@@ -7,7 +7,7 @@
 
 var styledCheckboxesRadios = {
     focused_class: "focused",
-    set: function() {
+    init: function() {
         $('input[type=checkbox]').each(function(index) {
             styledCheckboxesRadios.styleInputs($(this), 'checkbox');
         });
@@ -85,7 +85,7 @@ var styledCheckboxesRadios = {
 
 //initialize styledCheckboxesRadios
 $(document).ready(function(){
-    styledCheckboxesRadios.set();
+    styledCheckboxesRadios.init();
 });
 
 ```
