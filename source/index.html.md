@@ -17,6 +17,7 @@ includes:
   - scrolltothis
   - showhidedefaults
   - styledcheckboxesradios
+  - styledselects
   - svgreplacement
   - validateform
   - validatenumeric
