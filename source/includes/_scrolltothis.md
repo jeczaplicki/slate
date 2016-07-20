@@ -32,7 +32,7 @@ $('#some_element').scrollToThis();
 ```
 
 ```html
-    <!-- No HTML needed -->
+<!-- No HTML needed -->
 ```
 
 scrollToThis is a custom jQuery method that triggers the page to scroll to the element it is called on with an optional offset.

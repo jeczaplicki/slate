@@ -41,7 +41,7 @@ $('#some_element').onImageLoad(function(){
 ```
 
 ```html
-    <!-- No HTML needed -->
+<!-- No HTML needed -->
 ```
 
 onImageLoad is a custom jQuery method that calls a function when an image has loaded.

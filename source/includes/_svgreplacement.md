@@ -48,8 +48,8 @@ $(document).ready(function(){
 ```
 
 ```html
-    <!-- Example HTML -->
-    <a id="logo" class="svg" href="/"><img src="logo_image.svg"></a>
+<!-- Example HTML -->
+<a id="logo" class="svg" href="/"><img src="logo_image.svg"></a>
 ```
 
 svgReplacement swaps out SVG images for raster images if the browser does not support SVGs.

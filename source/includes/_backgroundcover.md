@@ -93,9 +93,9 @@ $(document).ready(function(){
 ```
 
 ```html
-    <div class="mimic-cover">
-        <img class="cover" href="some_image.jpg">
-    </div>
+<div class="mimic-cover">
+    <img class="cover" href="some_image.jpg">
+</div>
 ```
 
 backgroundCover emulates background size cover on any image element with the class cover whose parent has the class mimic-cover.

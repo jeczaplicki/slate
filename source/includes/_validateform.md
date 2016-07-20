@@ -170,21 +170,21 @@ span.phone-warning {
 ```
 
 ```html
-    <!-- example of various input elements that can be validated by validateForm -->
-    <div id="some_element">
-        <!-- required text field, cannot be empty -->
-        <label for="name">Name</label>
-        <input name="name" type="text" id="name" class="is-required">
-        <!-- required email field, cannot be empty, must pass email validation code -->
-        <label for="email">Email</label>
-        <input name="email" type="email" id="email" class="is-required">
-        <!-- required telephone field, cannot be empty, must pass phone validation code -->
-        <label for="telephone">Telephone</label>
-        <input name="telephone" type="tel" id="telephone" class="is-required">
-        <!-- required textarea, cannot be empty -->
-        <label for="comments">Question(s)</label>
-        <textarea name="comments" id="comments" class="is-required"></textarea>
-    </div>
+<!-- example of various input elements that can be validated by validateForm -->
+<div id="some_element">
+    <!-- required text field, cannot be empty -->
+    <label for="name">Name</label>
+    <input name="name" type="text" id="name" class="is-required">
+    <!-- required email field, cannot be empty, must pass email validation code -->
+    <label for="email">Email</label>
+    <input name="email" type="email" id="email" class="is-required">
+    <!-- required telephone field, cannot be empty, must pass phone validation code -->
+    <label for="telephone">Telephone</label>
+    <input name="telephone" type="tel" id="telephone" class="is-required">
+    <!-- required textarea, cannot be empty -->
+    <label for="comments">Question(s)</label>
+    <textarea name="comments" id="comments" class="is-required"></textarea>
+</div>
 ```
 
 validateForm is a custom jQuery method that validates a form or a series of form elements. It has the option for showing warning/error labels. It also has the option to call a callback function instead of submitting the form.

@@ -56,7 +56,7 @@ $('#some_element').allowOnlyNumbers(true, true);
 ```
 
 ```html
-    <!-- No HTML needed -->
+<!-- No HTML needed -->
 ```
 
 allowOnlyNumbers is a custom jQuery method that restricts a field to numbers with the option of allowing decimals and/or dashes.

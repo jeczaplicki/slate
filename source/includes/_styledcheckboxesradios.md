@@ -199,14 +199,14 @@ label.stylized {
 ```
 
 ```html
-    <div>
-        <input type="checkbox" name="checkbox_example" id="checkbox_example" value="example">
-        <label for="checkbox_example">Checkbox Example</label>
-    </div>
-    <div>
-        <input type="radio" name="radio_example" id="radio_example" value="example">
-        <label for="radio_example">Radio Example</label>
-    </div>
+<div>
+    <input type="checkbox" name="checkbox_example" id="checkbox_example" value="example">
+    <label for="checkbox_example">Checkbox Example</label>
+</div>
+<div>
+    <input type="radio" name="radio_example" id="radio_example" value="example">
+    <label for="radio_example">Radio Example</label>
+</div>
 ```
 
 styledCheckboxesRadios replaces standard checkboxes and radios with a stylized replacement. It acts on all inputs of the type radio and checkbox.

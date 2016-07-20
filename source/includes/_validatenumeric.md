@@ -25,7 +25,7 @@ var is_valid = validateNumeric(some_value);
 ```
 
 ```html
-    <!-- No HTML needed -->
+<!-- No HTML needed -->
 ```
 
 validateNumeric is a function that returns true or false for whether a value is a valid numeric value.

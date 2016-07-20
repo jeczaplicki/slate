@@ -54,7 +54,7 @@ cookieController.deleteCookie('cookiename');
 ```
 
 ```html
-    <!-- No HTML needed -->
+<!-- No HTML needed -->
 ```
 
 cookieController is a set of functions used to read and modify cookies.

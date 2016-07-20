@@ -59,7 +59,7 @@ hashController.setHashFromElementAttribute($('#some_element'), 'data-slug');
 ```
 
 ```html
-    <!-- No HTML needed -->
+<!-- No HTML needed -->
 ```
 
 hashController is a set of functions used to read and modify the hash.
