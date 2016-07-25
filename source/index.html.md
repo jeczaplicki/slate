@@ -19,6 +19,7 @@ includes:
   - styledcheckboxesradios
   - styledselects
   - svgreplacement
+  - tabscontroller
   - validateform
   - validatenumeric
   - windowdimensions
