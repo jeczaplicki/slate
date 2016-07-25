@@ -153,7 +153,10 @@ $(document).ready(function(){
 ```
 
 ```css
-.tab_nav li{
+.tabs {
+    position: relative;
+}
+.tab_nav li {
     display: inline-block;
     background-image: none;
     padding-left: 0px;
@@ -196,14 +199,14 @@ $(document).ready(function(){
     -o-transition: color .2s ;
     transition: color .2s ;
 }
-.tabs li a:hover{
+.tabs li a:hover {
     color: #92231e;
 }
-.tabs li a.current{
+.tabs li a.current {
     border-bottom: 1px solid #FFF;
     color: #92231e;
 }
-.tabs .hide{
+.tabs .hide {
     display:none;
 }
 .tabs .tab_content {
@@ -231,7 +234,6 @@ $(document).ready(function(){
 .tabs.tabs--show_select_menu .tab_nav a {
     cursor: default;
 }
-
 ```
 
 ```html
