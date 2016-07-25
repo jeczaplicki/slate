@@ -69,7 +69,6 @@ var tabsController = {
                 tabsController.showContent(selected_option, parent);
             });
         }
-
         tabsController.initTabHeightWatch(parent);
     },
     buildSelectMenuElement : function(parent) {
