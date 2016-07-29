@@ -13,6 +13,7 @@ includes:
   - backgroundcover
   - cookiecontroller
   - hashcontroller
+  - modal
   - onimageload
   - scrolltothis
   - showhidedefaults
