@@ -1527,6 +1527,12 @@
     <span class="p">},</span>
     <span class="na">getWindowHeight</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">win_height</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="na">getDocumentHeight</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">doc_height</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="na">getDocumentWidth</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">doc_width</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -1544,6 +1550,12 @@
 
 <span class="c1">//get window height</span>
 <span class="kd">var</span> <span class="nx">current_window_height</span> <span class="o">=</span> <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">getWindowHeight</span><span class="p">();</span>
+
+<span class="c1">//get document width</span>
+<span class="kd">var</span> <span class="nx">current_document_width</span> <span class="o">=</span> <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">getDocumentWidth</span><span class="p">();</span>
+
+<span class="c1">//get document height</span>
+<span class="kd">var</span> <span class="nx">current_document_height</span> <span class="o">=</span> <span class="nx">windowDimensions</span><span class="p">.</span><span class="nx">getDocumentHeight</span><span class="p">();</span>
 
 </code></pre>
 <pre class="highlight css"><code><span class="c">/*
